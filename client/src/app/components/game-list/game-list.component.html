@@ -1,1 +1,17 @@
-<p>game-list works!</p>
+<div class="col-md-4" *ngFor="let game of games">
+    <div class="card text-center">
+        <div class="card-header bg-dark d-flex text-white justify-content-between align-items-center">
+            {{game.title}}
+            <button class="btn btn-danger" (click)="deleteGame(game.id)">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
+        <img [src]="game.image" alt="" class="card-image-top">
+        <div class="card-body">
+            <p>{{game.description}}</p>
+            <a [routerLink]="['/games/edit', game.id]" class="btn btn-block btn-info" >
+                Edit Game
+            </a>
+        </div>
+    </div>
+</div>
