@@ -9,6 +9,10 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { GameFormComponent } from './components/game-form/game-form.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { GamesService } from './services/games.service';
+import { ClienteFormComponent } from './components/cliente/cliente-form/cliente-form.component';
+import { ClientesService } from './services/clientes.service';
+import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
+import { PhonePipe } from './pipes/mask/phone.pipe';
 
 
 
@@ -17,7 +21,10 @@ import { GamesService } from './services/games.service';
     AppComponent,
     NavigationComponent,
     GameFormComponent,
-    GameListComponent
+    GameListComponent,
+    ClienteListComponent,
+    ClienteFormComponent,
+    PhonePipe
   ],
   imports: [
     BrowserModule,
@@ -25,7 +32,7 @@ import { GamesService } from './services/games.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [GamesService],
+  providers: [GamesService, ClientesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ClienteFormComponent } from './components/cliente/cliente-form/cliente-form.component';
+import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
 import { GameFormComponent } from './components/game-form/game-form.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/games',
+    redirectTo: '/clientes',
     pathMatch: 'full'
   },
   {
@@ -20,7 +22,19 @@ const routes: Routes = [
   {
     path:'games/edit/:id',
     component: GameFormComponent
-  }
+  },
+  {
+    path:'clientes',
+    component: ClienteListComponent
+  },
+  {
+    path:'clientes/add',
+    component: ClienteFormComponent
+  },
+  {
+    path:'clientes/edit:/id',
+    component: ClienteFormComponent
+  },
 ];
 
 @NgModule({
