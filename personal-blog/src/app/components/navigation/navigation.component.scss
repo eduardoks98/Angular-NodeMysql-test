@@ -1,0 +1,173 @@
+$dark-bg: #1e2a3a;
+$dark-btn: #54b689;
+$dark-color: rgb(228, 225, 225);
+$dark-hover: #fff;
+
+$light-bg: #54b689;
+$light-btn: #fff;
+$light-color: #54b689;
+$light-hover: #398562;
+
+@mixin bg-colors($light-theme: true) {
+    @if $light-theme {
+        background-color: $light-bg;
+    } @else {
+        background-color: $dark-bg;
+    }
+}
+@mixin btn-colors($light-theme: true) {
+    @if $light-theme {
+        background-color: $light-btn;
+        color: $light-color;
+    } @else {
+        background-color: $dark-btn;
+        color: $dark-color;
+    }
+}
+@mixin scroll-colors($light-theme: true) {
+    @if $light-theme {
+        border-top: 1px solid #3985624b;
+    } @else {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+}
+
+.container-nav {
+    width: 280px;
+
+    height: 100vh;
+    //background: #1e2a3a;
+    color: #fff;
+    overflow-y: auto;
+    scrollbar-color: rgba(0, 0, 0, 0.2) #54b689;
+    scrollbar-width: thin;
+    font: 100;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    &.dark {
+        @include bg-colors($light-theme: false);
+        .social-media button {
+            @include btn-colors($light-theme: false);
+        }
+        .navigation {
+            @include scroll-colors($light-theme: false);
+        }
+    }
+    &.light {
+        @include bg-colors($light-theme: true);
+        .social-media button {
+            @include btn-colors($light-theme: true);
+        }
+        .navigation {
+            @include scroll-colors($light-theme: true);
+        }
+    }
+
+    .container-header {
+        width: calc(100% - 20px);
+        height: 40px;
+        //background-color: gray;
+        display: flex;
+        padding: 25px;
+        font-size: 1.2rem;
+        // margin: auto;
+        .design-box {
+            border: 1px solid rgb(177, 175, 175);
+            color: rgb(177, 175, 175);
+            padding: 0px 14px 15px 16px;
+            max-width: 30px;
+            max-height: 34px;
+            flex: 1;
+            font-size: 1.5rem;
+        }
+        .name {
+            flex: 1;
+            text-align: center !important;
+            font-weight: bolder;
+            font-size: 1.5rem;
+        }
+        .inline-name {
+            flex: 1;
+            text-align: center !important;
+            font-weight: bolder;
+            font-size: 1.5rem;
+            margin-left: -31px;
+        }
+        .inline-group {
+            float: left;
+            width: auto;
+        }
+    }
+    .container-body {
+        width: calc(100% - 32px);
+        padding: 24px 16px 24px 16px;
+        // background-color: cyan;
+        .overlay-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background-color: rgb(90, 90, 90);
+            margin: 0 auto 10px auto;
+        }
+        .text {
+            text-align: center;
+            padding-bottom: 20px;
+            font-size: .9rem;
+            font-weight: 400;
+            line-height: 1.5;
+            font-family: sans-serif;
+            -webkit-text-size-adjust: 100%;
+        }
+        .social-media {
+            //background-color: purple;
+            display: flex;
+            width: calc(31.5%);
+
+            padding: 0 calc(50% - (3 * 25px)) 0 calc(50% - (3 * 25px));
+
+            button {
+                flex: 1;
+                max-width: 40px;
+                min-width: 40px;
+                height: 40px;
+                //background-color: #54b689;
+                border-radius: 50%;
+                border: none;
+                outline: none;
+                outline-style: none;
+                margin: 0 5px;
+                .fa-linkedin-in {
+                    font-size: 1.2rem;
+                    //color: #fff;
+                }
+                &:focus {
+                    outline: none;
+                    outline-style: none;
+                }
+                &:active {
+                    outline: none;
+                    outline-style: none;
+                }
+            }
+        }
+
+        .navigation {
+            list-style: none;
+            margin-top: 10px;
+
+            padding: 30px 5px 5px 5px;
+            li {
+                padding: 10px 0 10px 10px;
+               
+                font-weight: 700;
+                &:not(li:last-child) {
+                    margin-bottom: 5px;
+                }
+                &:hover {
+                    margin-left: 2px solid black;
+                   // background: linear-gradient(135deg, $light-hover 20%, $light-bg, $light-bg);
+                }
+            }
+        }
+    }
+}

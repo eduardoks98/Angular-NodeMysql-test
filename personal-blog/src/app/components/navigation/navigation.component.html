@@ -1,0 +1,34 @@
+
+<div class="container-nav" [ngClass]="collapse ? 'dark' : 'light'">
+    <div class="container-header row">
+        <div *ngIf="collapse" class="design-box inline-group ">
+            <i  class="fas fa-bars"></i>
+        </div>
+        <div [ngClass]="collapse ? 'inline-name' : 'name'" (click)="cCollapse(collapse)">Eduardo Steffens</div>
+    </div>
+    <div class="container-body collapse">
+        <div class="overlay-image">
+        </div>
+        <div class="text">
+            Hi, my name is Simon Doe and I'm a senior software engineer. Welcome to my personal website!
+        </div>
+        <div class="social-media">
+            <button type="button">
+                <i class="fab fa-linkedin-in"></i>
+            </button>
+            <button type="button">
+                <i class="fab fa-linkedin-in"></i>
+            </button>
+            <button type="button">
+                <i class="fab fa-linkedin-in"></i>
+            </button>
+        </div>
+        <div class="division">
+            
+        </div>
+        <nav class="navigation">
+            <li>Sobre mim</li>
+            <li>Portifolio</li>
+        </nav>
+    </div>
+</div>
