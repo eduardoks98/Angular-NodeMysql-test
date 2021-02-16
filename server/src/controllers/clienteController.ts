@@ -15,7 +15,7 @@ class ClienteController {
 
     }
     public async teste(req: Request, res: Response) {
-       
+
         console.log(req.params);
 
     }
@@ -23,9 +23,19 @@ class ClienteController {
     public async getId(req: Request, res: Response): Promise<any> {
         const { id } = req.params;
         try {
-            const clientes = await pool.query("SELECT * FROM clientes WHERE cli_id = ?", [id]);
+            const clientes = await pool.query(
+                "SELECT c.*, JSON_ARRAYAGG(JSON_OBJECT('mot_id', m.mot_id, 'mot_cli_id', m.mot_cli_id, 'mot_nome', m.mot_nome,'mot_telefone', m.mot_telefone)) cli_motoristas, JSON_ARRAYAGG(JSON_OBJECT('vei_id', v.vei_id, 'vei_cli_id', v.vei_cli_id, 'vei_placa', v.vei_placa,'vei_veiculo', v.vei_veiculo)) cli_veiculos FROM clientes c LEFT JOIN motoristas m ON m.mot_cli_id =c.cli_id LEFT JOIN veiculos v ON v.vei_cli_id=c.cli_id where c.cli_id=?", [id]);
             if (clientes.length > 0) {
                 //res.json({ message: 'Jogo encontrado!' });
+                //console.log(clientes);
+                clientes[0].cli_motoristas = JSON.parse(clientes[0].cli_motoristas);
+                if (clientes[0].cli_motoristas[0].mot_id == null) {
+                    clientes[0].cli_motoristas = null;
+                }
+                clientes[0].cli_veiculos = JSON.parse(clientes[0].cli_veiculos);
+                if (clientes[0].cli_veiculos[0].vei_id == null) {
+                    clientes[0].cli_veiculos = null;
+                }
                 return res.json({ message: "Cliente encontrado", data: clientes[0] });
             }
             res.status(404).json({ message: 'Nenhum cliente encontrado!', data: null });
