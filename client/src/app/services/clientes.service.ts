@@ -27,7 +27,10 @@ export class ClientesService {
     return this.http.delete(`${this.API_URL}/clientes/${id}`);
   }
 
-  putCliente(id: string | number, game: Cliente): Observable<Cliente> {
+  putCliente(id: string | number, game: Cliente): Observable<any> {
     return this.http.put(`${this.API_URL}/clientes/${id}`, game);
   }
+
+  //stored selected cliente
+  selectedCliente: any;
 }

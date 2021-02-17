@@ -1,1 +1,284 @@
-<p>cliente-form works!</p>
+<form [formGroup]="clienteFB" *ngIf="clienteFB">
+    <table class="table-cli-form table  table-dark">
+        <thead>
+            <tr class="header">
+                <th colspan="12">
+                    <div class="row">
+
+                        <div class="col-8">
+
+                            Cliente
+
+                            <span >
+                                - {{clienteForm.cli_id}}
+                            </span>
+                        </div>
+                        <div class="data-info col-4">
+                            <span>
+                                Criado: - {{clienteForm.cli_date}} <br>
+                                Modificado: - 09/10/2000
+                            </span>
+                        </div>
+                    </div>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="title">
+                <td colspan="10">EMPRESA</td>
+                <td colspan="2">TELEFONE</td>
+
+            </tr>
+            <tr class="body">
+                <td colspan="10">
+                    <input formControlName="cli_pj_razao_social">
+                    <!-- {{clienteForm.cli_pj_razao_social}} -->
+
+                </td>
+
+
+                <td colspan="2">
+                    <input formControlName="cli_pj_telefone">
+                    <!-- {{clienteForm.cli_pj_telefone}} -->
+
+                </td>
+            </tr>
+
+            <tr class="title">
+                <td colspan="4">RESPONSAVEL</td>
+                
+                <td colspan="3">CNPJ</td>
+                <td colspan="3">INSCRIÇÃO ESTADUAL</td>
+                <td colspan="2">TELEFONE</td>
+            </tr>
+            <tr class="body">
+                <td colspan="4">
+                    <input formControlName="cli_pj_responsavel">
+                    <!-- {{clienteForm.cli_pj_responsavel}} -->
+
+                </td>
+                <td colspan="3">
+                    <input formControlName="cli_cnpj">
+                    <!-- {{clienteForm.cli_cnpj}} -->
+
+                </td>
+                <td colspan="3">
+                    <input formControlName="cli_pj_ie">
+                    <!-- {{clienteForm.cli_pj_ie}} -->
+
+                </td>
+                <td colspan="2">
+                    <input formControlName="cli_pj_resp_telefone">
+                    <!-- {{clienteForm.cli_pj_resp_telefone}} -->
+
+                </td>
+            </tr>
+            <tr class="title">
+                <td colspan="6">Nome</td>
+                <td colspan="4">Data Nascimento</td>
+                <td colspan="2">telefone</td>
+            </tr>
+            <tr class="body">
+                <td colspan="6">
+                    <input formControlName="cli_pf_nome">
+                    <!-- {{clienteForm.cli_pf_nome}} -->
+
+                </td>
+                <td colspan="4">
+                    <input formControlName="cli_pf_data_nascimento">
+                    <!-- {{clienteForm.cli_pf_data_nascimento}} -->
+
+                </td>
+                <td colspan="2">
+                    <input formControlName="cli_pf_telefone">
+                    <!-- {{clienteForm.cli_pf_telefone}} -->
+
+                </td>
+            </tr>
+            <tr class="title">
+                <td colspan="6">Logradouro</td>
+                <td colspan="4">Número</td>
+                <td colspan="2">complemento</td>
+            </tr>
+            <tr class="body">
+                <td colspan="6">
+                    <input formControlName="cli_endereco">
+                    <!-- {{clienteForm.cli_endereco}} -->
+
+                </td>
+                <td colspan="4">
+                    <input formControlName="cli_numero">
+                    <!-- {{clienteForm.cli_numero}} -->
+
+                </td>
+                <td colspan="2">
+                    <input formControlName="cli_complemento">
+                    <!-- {{clienteForm.cli_complemento}} -->
+                </td>
+            </tr>
+            <tr class="title">
+                <td colspan="6">Bairro</td>
+                <td colspan="4">Cidade</td>
+                <td colspan="2">Estado</td>
+            </tr>
+            <tr class="body">
+                <td colspan="6">
+                    <input formControlName="cli_bairro">
+                    <!-- {{clienteForm.cli_bairro}} -->
+                </td>
+                <td colspan="4">
+                    <input formControlName="cli_cidade">
+                    <!-- {{clienteForm.cli_cidade}} -->
+                </td>
+                <td colspan="2">
+                    <input formControlName="cli_estado">
+                    <!-- {{clienteForm.cli_estado}} -->
+                </td>
+            </tr>
+            <tr class="title">
+                <td colspan="3">cep</td>
+                <td colspan="9"></td>
+            </tr>
+            <tr class="body">
+                <td colspan="3">
+                    <input formControlName="cli_cep">
+                    <!-- {{clienteForm.cli_cep}} -->
+                </td>
+                <td colspan="9"></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<!-- <table class="table-mot-form table  table-dark">
+        <thead>
+            <tr class="header">
+                <th scope="col" colspan="4"> Motoristas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="title">
+                <td>TELEFONE</td>
+                <td>IE</td>
+            </tr>
+            <tr class="body">
+                <td>5199999999</td>
+                <td>0000000000</td>
+            </tr>
+            <tr class="title">
+                <td>RESPONSAVEL</td>
+                <td>TELEFONE</td>
+            </tr>
+            <tr class="body">
+                <td>RESPONSAVEL EMPRESA</td>
+                <td>5199999999</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table-vei-form table  table-dark">
+        <thead>
+            <tr class="header">
+                <th scope="col" colspan="4"> Motoristas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="title">
+                <td>TELEFONE</td>
+                <td>IE</td>
+            </tr>
+            <tr class="body">
+                <td>5199999999</td>
+                <td>0000000000</td>
+            </tr>
+            <tr class="title">
+                <td>RESPONSAVEL</td>
+                <td>TELEFONE</td>
+            </tr>
+            <tr class="body">
+                <td>RESPONSAVEL EMPRESA</td>
+                <td>5199999999</td>
+            </tr>
+        </tbody>
+    </table> -->
+
+
+<!-- cli_id?: number;
+
+cli_cnpj?: string;
+cli_pj_razao_social?: string;
+cli_pj_telefone?: string;
+cli_pj_ie?: string;
+cli_pj_responsavel?: string;
+cli_pj_resp_telefone?: string;
+
+cli_cpf?: string;
+cli_pf_nome?: string;
+cli_pf_telefone?: string;
+cli_pf_data_nascimento?: string;
+
+cli_endereco?: string;
+cli_numero?: string;
+cli_complemento?: string;
+cli_bairro?: string;
+cli_cidade?: string;
+cli_estado?: string;
+cli_cep?: string;
+
+cli_date?: Date; -->
+<!-- 
+<div class="card mb-3">
+    <div class="card-header">
+        <span class="fw-bold">
+            {{selectedCliente.cli_pj_razao_social ? selectedCliente.cli_pj_razao_social:"NOME EMPRESA"}}
+        
+
+    </div>
+    <div class="card-body">
+         EMPRESA 
+        <div class="row">
+            <div class="form-group col-6">
+                <span for="responsavel" class="fw-bold form-span">Responsável
+                <div class="card-text" id="responsavel">
+                    {{selectedCliente.cli_pj_responsavel ? selectedCliente.cli_pj_responsavel:"RESPONSAVEL"}}
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <span for="resp_telefone" class="fw-bold form-span">Telefone
+                <div class="card-text" id="resp_telefone">
+                    {{selectedCliente.cli_pj_telefone | phone}}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+             ENDEREÇO
+            <div class="form-group col-12">
+                <span for="endereco" class="fw-bold form-span">Endereço
+                <div class="card-text">
+                    {{selectedCliente.cli_endereco ? selectedCliente.cli_endereco+",
+                    "+selectedCliente.cli_numero+" -
+                    "+selectedCliente.cli_bairro+",
+                    "+selectedCliente.cli_cidade+"/"+selectedCliente.cli_estado : "SEM ENDEREÇO"}}
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="form-group col-6">
+                <span for="motorista" class="fw-bold">Motorista
+                <div class="card-text" id="motorista">
+                    {{cliente.cli_motorista}}
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <span for="motorista">Telefone
+                <div class="card-text">
+                    {{cliente.cli_motor_telefone | phone}}
+                </div>
+            </div>
+        </div> 
+
+
+
+    </div>
+</div> -->

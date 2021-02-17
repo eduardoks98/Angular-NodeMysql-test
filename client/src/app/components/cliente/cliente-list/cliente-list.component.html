@@ -1,74 +1,33 @@
-<ul class="list-group">
+<table class="table-cli-list table table-hover  ">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">NOME</th>
+            <th scope="col">CNPJ/CPF</th>
+            <th scope="col">TELEFONE</th>
+            <th scope="col">TIPO</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
 
-    <li class="d-flex justify-content-between align-items-center" *ngFor="let cliente of clientes">
-        <div class="card mb-3">
-            <div class="card-header">
-                {{cliente.cli_motorista}}
-                {{cliente.cli_pj_razao_social ? "("+cliente.cli_pj_razao_social+")" : ""}}
-                {{cliente.cli_pj_telefone ? "- "+cliente.cli_pj_telefone:""}}
-            </div>
-            <div class="card-body">
-                <!-- ENDEREÇO -->
-                <p class="card-text">
-                    {{cliente.cli_endereco ? cliente.cli_endereco+", "+cliente.cli_numero+" - "+cliente.cli_bairro+",
-                    "+cliente.cli_cidade+"/"+cliente.cli_estado : "Sem endereço cadastrado"}}
-                </p>
+    <tbody>
+        <tr *ngFor="let cli of clientes" (dblclick)="selectCliente($event, cli.cli_id, content)">
+            <td>{{cli.cli_id}} </td>
+            <td>{{cli.cli_tipo=="CPF" ? cli.cli_pf_nome:cli.cli_pj_razao_social}}</td>
+            <td>{{cli.cli_tipo=="CPF" ? cli.cli_cpf:cli.cli_cnpj}} </td>
+            <td>{{cli.cli_tipo=="CPF" ? cli.cli_pf_telefone:cli.cli_pj_telefone}}</td>
+            <td>{{cli.cli_tipo}}</td>
+            <td (click)="edit(cli.cli_id)"><i class="fas fa-pencil-alt"></i></td>
+            <td><i class="fas fa-times-circle"></i></td>
+        </tr>
+    </tbody>
 
-            </div>
-        </div>
+</table>
 
-        <div class="card mb-3">
-            <div class="card-header">
-                {{cliente.cli_pj_razao_social ? cliente.cli_pj_razao_social:"NOME EMPRESA"}}
-            </div>
-            <div class="card-body">
-                <!-- EMPRESA -->
-                <div class="row">
-                    <div class="form-group col-6">
-                        <span for="responsavel" class="fw-bold">Responsável</span>
-                        <div class="card-text" id="responsavel">
-                            {{cliente.cli_pj_responsavel ? cliente.cli_pj_responsavel:"RESPONSAVEL"}}
-                        </div>
-                    </div>
-                    <div class="form-group col-6">
-                        <span for="resp_telefone">Telefone</span>
-                        <div class="card-text" id="resp_telefone">
-                            {{cliente.cli_pj_telefone | phone}}
-                        </div>
-                    </div>
-                </div>
+<ng-template #content let-modal>
 
-                <div class="row">
-                    <!-- ENDEREÇO -->
-                    <div class="form-group col-12">
-                        <span for="endereco">Endereço</span>
-                        <div class="card-text">
-                            {{cliente.cli_endereco ? cliente.cli_endereco+", "+cliente.cli_numero+" -
-                            "+cliente.cli_bairro+",
-                            "+cliente.cli_cidade+"/"+cliente.cli_estado : "SEM ENDEREÇO"}}
-                        </div>
-                    </div>
-                </div>
-
-                <!-- <div class="row">
-                    <div class="form-group col-6">
-                        <span for="motorista" class="fw-bold">Motorista</span>
-                        <div class="card-text" id="motorista">
-                            {{cliente.cli_motorista}}
-                        </div>
-                    </div>
-                    <div class="form-group col-6">
-                        <span for="motorista">Telefone</span>
-                        <div class="card-text">
-                            {{cliente.cli_motor_telefone | phone}}
-                        </div>
-                    </div>
-                </div> -->
-
-
-
-            </div>
-        </div>
-    </li>
-
-</ul>
+    <div class="modal-body">
+        <app-cliente-form [cli_id]="cli_id"></app-cliente-form>
+    </div>
+</ng-template>

@@ -1,0 +1,84 @@
+@import "../../../../assets/css/theme.scss";
+
+.table-cli-form {
+    padding: 0px !important;
+
+    .data-info {
+        font-size: 0.6rem !important;
+        padding: 0px !important;
+        margin-top: -5px !important;
+    }
+    th {
+        font-size: 0.6rem !important;
+        padding: 0px !important;
+        background-color: $primary !important;
+        color: $dark;
+    }
+    td {
+        font-size: 0.8rem !important;
+        padding: 0px !important;
+        outline: none !important;
+        border: none !important;
+        background-color: $dark !important;
+    }
+    tr.header {
+        th {
+            font-size: 0.9rem !important;
+            padding: 15px !important;
+        }
+    }
+    tr.title {
+        td {
+            font-size: 0.6rem !important;
+            padding: 5px !important;
+            padding-left: 15px !important;
+            padding-bottom: 2px !important;
+            color: $primary !important;
+        }
+    }
+
+    tr.body {
+        padding: 0px !important;
+        td {
+            font-size: 0.8rem !important;
+            padding-left: 15px !important;
+            color: $light !important;
+            //border-bottom: 2px solid $main !important;
+            // span{
+            //     border-bottom: 2px solid $main;
+            //     min-width: calc(100% - 20px);
+            // }
+        }
+        td:nth-child(3n + 2) {
+            padding-bottom: 15px !important;
+        }
+    }
+}
+
+input {
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid transparentize($main, $amount: 1);
+    outline: none;
+    background-color: transparentize($main, $amount: 1);
+    //border-bottom: 2px solid $main;
+    color: $light;
+    text-transform: uppercase;
+    width: calc(100% - 20px);
+    transition: 500ms ease-in-out;
+    &:focus {
+        border: none;
+        outline: none;
+        //background-color: transparent;
+        border-bottom: 2px solid $light;
+        transition: 500ms ease-in-out;
+        transform: scaleX(1);
+    }
+}
+
+input.valid{
+    border-bottom: 2px solid $valid;
+}
+input.invalid{
+    border-bottom: 2px solid $invalid;
+}

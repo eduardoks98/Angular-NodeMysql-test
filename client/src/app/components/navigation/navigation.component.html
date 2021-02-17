@@ -1,14 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" routerLink="/">CRUD</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">TESTE</span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ml-auto" >
-          <a class="nav-link" routerLink="/games" routerLinkActive="active"><i class="fas fa-gamepad"></i>Games</a>
-          <a class="nav-link" routerLink="/games/add" routerLinkActive="active"><i class="fas fa-plus-circle"></i>Add games</a>
-        </div>
+<nav class=" navbar-bg navbar navbar-expand-lg navbar-dark  ">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">CRUD</a>
+    <button class="navbar-toggler" type="button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+      aria-controls="collapseExample">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-link" routerLink="/clientes" routerLinkActive="active"><i class="fas fa-gamepad"></i>Clientes</a>
+        <a class="nav-link" routerLink="/motoristas" routerLinkActive="active"><i class="fas fa-gamepad"></i>Motoristas</a>
+        <a class="nav-link" routerLink="/veiculos" routerLinkActive="active"><i class="fas fa-gamepad"></i>Veiculos</a>
+        <!-- <a class="nav-link" routerLink="/crediario" routerLinkActive="active"><i class="fas fa-gamepad"></i>Crediario</a> -->
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
