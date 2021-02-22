@@ -1,32 +1,108 @@
 <table class="table-cli-list table table-hover  ">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">NOME</th>
-            <th scope="col">CNPJ/CPF</th>
-            <th scope="col">TELEFONE</th>
-            <th scope="col">TIPO</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th>#</th>
+            <th class="cli_nome">NOME</th>
+            <th class="cli_cnpj">CNPJ/CPF</th>
+            <th class="cli_telefone">TELEFONE</th>
+            <th>TIPO </th>
+            <th></th>
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let cli of clientes" (dblclick)="selectCliente($event, cli.cli_id, content)">
-            <td>{{cli.cli_id}} </td>
-            <td>{{cli.cli_tipo=="CPF" ? cli.cli_pf_nome:cli.cli_pj_razao_social}}</td>
-            <td>{{cli.cli_tipo=="CPF" ? cli.cli_cpf:cli.cli_cnpj}} </td>
-            <td>{{cli.cli_tipo=="CPF" ? cli.cli_pf_telefone:cli.cli_pj_telefone}}</td>
-            <td>{{cli.cli_tipo}}</td>
-            <td (click)="edit(cli.cli_id)"><i class="fas fa-pencil-alt"></i></td>
-            <td><i class="fas fa-times-circle"></i></td>
-        </tr>
+        <ng-container *ngFor="let cli of clientes">
+            <tr (dblclick)="selectCliente($event, cli.cli_id, content)" (click)="showDataCli(cli.cli_id,1)">
+                <td><i *ngIf="cliente_preview[cli.cli_id]?.view_show" class="fas fa-angle-double-down"></i> </td>
+                <td class="cli_nome">{{cli.cli_tipo=="CPF" ? cli.cli_pf_nome:cli.cli_pj_razao_social}}</td>
+                <td class="cli_cnpj">{{cli.cli_tipo=="CPF" ? cli.cli_cpf:cli.cli_cnpj}} </td>
+                <td class="cli_telefone">{{cli.cli_tipo=="CPF" ? cli.cli_pf_telefone:cli.cli_pj_telefone}}</td>
+                <td>{{cli.cli_tipo}}</td>
+                <td><i class="fas fa-times-circle"></i></td>
+
+            </tr>
+            <!-- motoristas -->
+            <!-- <tr class="motorista" *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_preview[cli.cli_id]?.view_mot">
+                <th><i class="fas fa-angle-double-down"></i></th>
+                <th class="mot_row">Motoristas</th>
+            </tr> -->
+            <ng-container>
+                <tr class="subrow" (click)="showDataCli(cli.cli_id,2)">
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_mot"> <i
+                            class="fas fa-angle-double-up"></i></th>
+                    <th
+                        *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_preview[cli.cli_id]?.view_mot && !cliente_show[cli.cli_id]?.view_mot">
+                        <i class="fas fa-angle-double-down"></i></th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_preview[cli.cli_id]?.view_mot && !cliente_show[cli.cli_id]?.view_mot"
+                        class="item-1">Motoristas</th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_mot"></th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_mot"
+                        class="item-2">NOME</th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_mot"
+                        class="item-3">TELEFONE</th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_mot"></th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_mot"></th>
+
+                </tr>
+                <ng-container *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_mot">
+                    <tr class="subrow" *ngFor="let mot of cli.cli_motoristas">
+                        <td></td>
+                        <td> </td>
+                        <td class="item-2">{{mot.mot_nome}} </td>
+                        <td class="item-3">{{mot.mot_telefone}} </td>
+                        <td><i class="fas fa-pencil-alt"></i></td>
+                        <td><i class="fas fa-times-circle"></i></td>
+
+                    </tr>
+                </ng-container>
+
+            </ng-container>
+            <!-- veiculos -->
+            <!-- <tr class="motorista" (click)="showDataCli(cli.cli_id,3)"
+                *ngIf="cliente_show[cli.cli_id]?.view_show  && cliente_preview[cli.cli_id]?.view_vei">
+                <th><i class="fas fa-angle-double-down"></i></th>
+                <th class="mot_row">Veiculos</th>
+            </tr> -->
+            <ng-container>
+                <tr class="subrow" (click)="showDataCli(cli.cli_id,3)">
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_vei"><i
+                            class="fas fa-angle-double-up"></i></th>
+                    <th
+                        *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_preview[cli.cli_id]?.view_vei  && !cliente_show[cli.cli_id]?.view_vei">
+                        <i class="fas fa-angle-double-down"></i></th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_preview[cli.cli_id]?.view_vei  && !cliente_show[cli.cli_id]?.view_vei"
+                        class="item-1">Veiculos</th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_vei"></th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_vei"
+                        class="item-2">Placa</th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_vei"
+                        class="item-3">Veiculo</th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_vei"></th>
+                    <th *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_vei"></th>
+
+                </tr>
+                <ng-container *ngFor="let vei of cli.cli_veiculos">
+
+                    <tr class="subrow"
+                        *ngIf="cliente_show[cli.cli_id]?.view_show && cliente_show[cli.cli_id]?.view_vei">
+                        <td></td>
+                        <td></td>
+                        <td class="item-2">{{vei.vei_placa}} </td>
+                        <td class="item-3">{{vei.vei_veiculo}} </td>
+                        <td><i class="fas fa-pencil-alt"></i></td>
+                        <td><i class="fas fa-times-circle"></i></td>
+
+                    </tr>
+                </ng-container>
+            </ng-container>
+
+        </ng-container>
+
     </tbody>
 
 </table>
 
 <ng-template #content let-modal>
-
     <div class="modal-body">
         <app-cliente-form [cli_id]="cli_id"></app-cliente-form>
     </div>

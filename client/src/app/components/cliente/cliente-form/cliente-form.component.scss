@@ -1,12 +1,60 @@
 @import "../../../../assets/css/theme.scss";
 
-.table-cli-form {
-    padding: 0px !important;
+// Hide short text by default (resolution > 1200px)
+.mobile {
+    display: none;
+}
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: $light;
+    -webkit-box-shadow: none;
+    transition: background-color 5000s ease-in-out 0s;
+    background-color: transparentize($main, $amount: 0.5);
+}
 
-    .data-info {
-        font-size: 0.6rem !important;
-        padding: 0px !important;
-        margin-top: -5px !important;
+.table-cli-form {
+    //padding: 0px !important;
+    min-width: 450px !important;
+    tfoot {
+        padding: 10px !important;
+        th {
+            //padding: 10px !important;
+            background-color: $dark !important;
+            button {
+                border: none;
+                width: 50px;
+                font-size: 1.5rem;
+                &.btn-success {
+                    background-color: $valid;
+                    &:hover {
+                        background-color: $valid-hover;
+                    }
+                }
+                &.btn-danger {
+                    background-color: $invalid;
+                    &:hover {
+                        background-color: $invalid-hover;
+                    }
+                }
+                &.btn-warning {
+                    background-color: $invalid;
+                    &:hover {
+                        background-color: $invalid-hover;
+                    }
+                }
+            }
+        }
     }
     th {
         font-size: 0.6rem !important;
@@ -19,7 +67,7 @@
         padding: 0px !important;
         outline: none !important;
         border: none !important;
-        background-color: $dark !important;
+        background-color: $dark-variation !important;
     }
     tr.header {
         th {
@@ -52,13 +100,16 @@
         td:nth-child(3n + 2) {
             padding-bottom: 15px !important;
         }
+        td:last-child {
+            padding-right: 15px !important;
+        }
     }
 }
 
 input {
     display: inline-block;
     border: none;
-    border-bottom: 2px solid transparentize($main, $amount: 1);
+    border-bottom: 2px solid transparentize($light, $amount: 0.98);
     outline: none;
     background-color: transparentize($main, $amount: 1);
     //border-bottom: 2px solid $main;
@@ -76,9 +127,34 @@ input {
     }
 }
 
-input.valid{
+input.valid {
     border-bottom: 2px solid $valid;
 }
-input.invalid{
+input.invalid {
     border-bottom: 2px solid $invalid;
+}
+
+@media screen and (max-width: 992px) {
+    .data-info span input[type="date"] {
+        margin-left: 5px;
+    }
+    .mobile {
+        display: inline-block;
+    }
+    .computer {
+        display: none;
+    }
+    input {
+        width: 100%;
+    }
+
+    tr.body {
+        padding: 0px !important;
+        td {
+            padding-left: 10px !important;
+        }
+        td:last-child {
+            padding-right: 10px !important;
+        }
+    }
 }

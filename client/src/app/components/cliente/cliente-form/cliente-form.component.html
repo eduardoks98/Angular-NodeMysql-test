@@ -1,26 +1,8 @@
-<form [formGroup]="clienteFB" *ngIf="clienteFB">
-    <table class="table-cli-form table  table-dark">
+<form [formGroup]="s_cli.clienteFB" *ngIf="s_cli.clienteFB" autocomplete="on">
+    <table class="table-cli-form table ">
         <thead>
             <tr class="header">
-                <th colspan="12">
-                    <div class="row">
-
-                        <div class="col-8">
-
-                            Cliente
-
-                            <span >
-                                - {{clienteForm.cli_id}}
-                            </span>
-                        </div>
-                        <div class="data-info col-4">
-                            <span>
-                                Criado: - {{clienteForm.cli_date}} <br>
-                                Modificado: - 09/10/2000
-                            </span>
-                        </div>
-                    </div>
-                </th>
+                <th colspan="12">Cliente</th>
 
             </tr>
         </thead>
@@ -30,7 +12,7 @@
                 <td colspan="2">TELEFONE</td>
 
             </tr>
-            <tr class="body">
+            <tr class="body last-child">
                 <td colspan="10">
                     <input formControlName="cli_pj_razao_social">
                     <!-- {{clienteForm.cli_pj_razao_social}} -->
@@ -47,12 +29,15 @@
 
             <tr class="title">
                 <td colspan="4">RESPONSAVEL</td>
-                
+
                 <td colspan="3">CNPJ</td>
-                <td colspan="3">INSCRIÇÃO ESTADUAL</td>
+                <td colspan="3">
+                    <span class="computer">INSCRIÇÃO ESTADUAL</span>
+                    <span class="mobile">IE</span>
+                </td>
                 <td colspan="2">TELEFONE</td>
             </tr>
-            <tr class="body">
+            <tr class="body last-child">
                 <td colspan="4">
                     <input formControlName="cli_pj_responsavel">
                     <!-- {{clienteForm.cli_pj_responsavel}} -->
@@ -75,17 +60,23 @@
                 </td>
             </tr>
             <tr class="title">
-                <td colspan="6">Nome</td>
-                <td colspan="4">Data Nascimento</td>
+                <td colspan="4">Nome</td>
+                <td colspan="4">CPF</td>
+                <td colspan="2">Data Nascimento</td>
                 <td colspan="2">telefone</td>
             </tr>
-            <tr class="body">
-                <td colspan="6">
+            <tr class="body last-child">
+                <td colspan="4">
                     <input formControlName="cli_pf_nome">
                     <!-- {{clienteForm.cli_pf_nome}} -->
 
                 </td>
                 <td colspan="4">
+                    <input formControlName="cli_pf_data_nascimento">
+                    <!-- {{clienteForm.cli_pf_data_nascimento}} -->
+
+                </td>
+                <td colspan="2">
                     <input formControlName="cli_pf_data_nascimento">
                     <!-- {{clienteForm.cli_pf_data_nascimento}} -->
 
@@ -97,11 +88,11 @@
                 </td>
             </tr>
             <tr class="title">
-                <td colspan="6">Logradouro</td>
+                <td colspan="6">endereço</td>
                 <td colspan="4">Número</td>
                 <td colspan="2">complemento</td>
             </tr>
-            <tr class="body">
+            <tr class="body last-child">
                 <td colspan="6">
                     <input formControlName="cli_endereco">
                     <!-- {{clienteForm.cli_endereco}} -->
@@ -122,7 +113,7 @@
                 <td colspan="4">Cidade</td>
                 <td colspan="2">Estado</td>
             </tr>
-            <tr class="body">
+            <tr class="body last-child">
                 <td colspan="6">
                     <input formControlName="cli_bairro">
                     <!-- {{clienteForm.cli_bairro}} -->
@@ -136,18 +127,34 @@
                     <!-- {{clienteForm.cli_estado}} -->
                 </td>
             </tr>
+
             <tr class="title">
-                <td colspan="3">cep</td>
-                <td colspan="9"></td>
+                <td colspan="4">cep</td>
+                <td colspan="4">criado</td>
+                <td colspan="4">alterado</td>
             </tr>
             <tr class="body">
-                <td colspan="3">
+                <td colspan="4">
                     <input formControlName="cli_cep">
                     <!-- {{clienteForm.cli_cep}} -->
                 </td>
-                <td colspan="9"></td>
+                <td colspan="4"><input type="date" name="datepicker" ngbDatepicker #datepicker="ngbDatepicker"
+                        [date]="cli_date!" formControlName="cli_date"></td>
+                <td colspan="4"><input type="date" name="datepicker" ngbDatepicker #datepicker="ngbDatepicker"
+                        [date]="cli_date!" formControlName="cli_date"></td>
             </tr>
         </tbody>
+        <tfoot>
+            <th colspan="12">
+                <div class="d-flex flex-row-reverse">
+                    <button type="button" class="btn btn-success p-2 "  ngbTooltip="Salvar"><i class="fas fa-check" ></i></button>
+                    <button type="button" class="btn btn-warning p-2 mr-2" (click)="getCliente(cli_id)" ngbTooltip="Restaurar dados"><i class="fas fa-eraser"></i></button>
+                    <button type="button" class="btn btn-danger p-2 mr-2 "  (click)="closeModal()" ngbTooltip="Cancelar"><i class="fas fa-times"></i></button>
+                    
+                </div>
+
+            </th>
+        </tfoot>
     </table>
 </form>
 <!-- <table class="table-mot-form table  table-dark">
@@ -263,7 +270,7 @@ cli_date?: Date; -->
             </div>
         </div>
 
-        <!-- <div class="row">
+       <div class="row">
             <div class="form-group col-6">
                 <span for="motorista" class="fw-bold">Motorista
                 <div class="card-text" id="motorista">

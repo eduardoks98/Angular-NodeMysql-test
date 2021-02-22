@@ -1,5 +1,23 @@
 @import "assets/css/theme.scss";
 
+.row {
+   --bs-gutter-x: 0;
+   --bs-gutter-y: 0;
+   display: block;
+   margin:0px !important;
+   padding:0px !important;
+}
+.row>* {
+   --bs-gutter-x: 0;
+   --bs-gutter-y: 0;
+   display: block;
+   margin:0px !important;
+   padding-right: calc(0px);
+   padding-left: calc(0px);
+}
+
+
+
 ::-webkit-scrollbar {
     width: 0px;
     height: 0px;
@@ -9457,4 +9475,13 @@ th {
 .card-header,
 .card-title {
    color: inherit;
+}
+.modal-content{
+    
+   min-width: 450px !important;
+}
+tbody, td, tfoot, th, thead, tr {
+   border-color: inherit;
+   border-style: none;
+   border-width: 0;
 }

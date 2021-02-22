@@ -1,0 +1,23 @@
+@import "../../../assets/css/theme.scss";
+.nav-tabs {
+    border:none ;
+    .nav-item {
+        margin: 0px;
+
+        width: fit-content;
+        height: 20px;
+        font-size: 0.65rem;
+        border:none ;
+        .nav-link {
+            color: $light;
+            padding: 4px 8px 0px 8px;
+            background-color: $dark-variation;
+            border: none;
+        }
+        .nav-link.active {
+            color: $dark;
+            background-color: $primary;
+            border: 2px solid $primary;
+        }
+    }
+}

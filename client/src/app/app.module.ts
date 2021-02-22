@@ -16,6 +16,10 @@ import { ClientesService } from './services/clientes.service';
 import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
 import { PhonePipe } from './pipes/mask/phone.pipe';
 import { ClienteComponent } from './components/cliente/cliente.component';
+import { MotoristaFormComponent } from './components/motorista/motorista-form/motorista-form.component';
+import { VeiculoFormComponent } from './components/veiculo/veiculo-form/veiculo-form.component';
+import { MotoristaListComponent } from './components/motorista/motorista-list/motorista-list.component';
+import { VeiculoListComponent } from './components/veiculo/veiculo-list/veiculo-list.component';
 
 
 
@@ -29,7 +33,11 @@ import { ClienteComponent } from './components/cliente/cliente.component';
     ClienteListComponent,
     ClienteFormComponent,
     PhonePipe,
-    ClienteComponent
+    ClienteComponent,
+    MotoristaFormComponent,
+    VeiculoFormComponent,
+    MotoristaListComponent,
+    VeiculoListComponent
   ],
   imports: [
     BrowserModule,

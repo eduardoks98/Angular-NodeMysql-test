@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { Cliente } from 'src/app/models/Cliente';
 import { ClientesService } from 'src/app/services/clientes.service';
 
@@ -12,34 +14,43 @@ export class ClienteFormComponent implements OnInit {
 
   //Input para carregar cliente selecionado no Cliente_List.component
   @Input() cli_id?: string;
-  clienteForm: Cliente = new Cliente();
 
-  //Forms
-  clienteFB: FormGroup;
 
   constructor(
-    private sCliente: ClientesService,
-    private fb: FormBuilder) {
+    public s_cli: ClientesService,
+    private fb: FormBuilder,
+    private calendar: NgbCalendar,
+    private ngbParse: NgbDateParserFormatter,
+    private route: ActivatedRoute) {
+    //console.log("FORMS");
   }
 
   ngOnInit(): void {
     //this.newForm();
     this.pageLoaded();
-    
+
   }
 
   pageLoaded() {
+    // this.route.params.subscribe(params => {
+    //   //console.log(params);
+    //   if (params.id != null){
+    //     this.cli_id = params.id;
+    //   }
+    // });
+
     if (this.cli_id == null) {
-      this.clienteForm.reset();
+      //this.s_cli.clienteForm.reset();
+      this.newForm();
     } else {
       this.getCliente(this.cli_id);
     }
   }
 
   getCliente(id) {
-    this.sCliente.getCliente(id).subscribe(
+    this.s_cli.getCliente(id).subscribe(
       res => {
-        this.clienteForm.setCliente(res as any);
+        //this.s_cli.clienteForm.setCliente(res as any);
         this.loadCliente(res as any);
       },
       err => console.log(err)
@@ -49,7 +60,7 @@ export class ClienteFormComponent implements OnInit {
 
   //form
   newForm() {
-    this.clienteFB = this.fb.group({
+    this.s_cli.clienteFB = this.fb.group({
       cli_id: null,
       cli_cnpj: null,
       cli_pj_razao_social: null,
@@ -75,9 +86,9 @@ export class ClienteFormComponent implements OnInit {
     });
   }
 
-  loadCliente(data){
+  loadCliente(data) {
     let cli = data.data;
-    this.clienteFB = this.fb.group({
+    this.s_cli.clienteFB = this.fb.group({
       cli_id: cli.cli_id,
       cli_cnpj: cli.cli_cnpj,
       cli_pj_razao_social: cli.cli_pj_razao_social,
@@ -97,10 +108,14 @@ export class ClienteFormComponent implements OnInit {
       cli_estado: cli.cli_estado,
       cli_cep: cli.cli_cep,
       cli_status: cli.cli_status,
-      cli_date: cli.cli_date,
+      cli_date: this.ngbParse.parse(cli.cli_date),
       cli_motoristas: cli.cli_motoristas,
       cli_veiculos: cli.cli_veiculos
     });
-    console.log(this.clienteFB.value);
+  }
+
+  closeModal(){
+    console.log("teste");
+    this.s_cli.clienteForm.close();
   }
 }

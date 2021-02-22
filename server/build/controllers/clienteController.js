@@ -18,7 +18,66 @@ class ClienteController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const clientes = yield database_1.default.query('SELECT * FROM clientes');
-                res.json(clientes);
+                const motoristas = yield database_1.default.query('SELECT * FROM motoristas');
+                const veiculos = yield database_1.default.query('SELECT * FROM veiculos');
+                let newCliente = [];
+                let newMotorista = [];
+                let newVeiculo = [];
+                clientes.forEach((data, index) => {
+                    newMotorista = [];
+                    newVeiculo = [];
+                    newCliente.push({
+                        "cli_id": data.cli_id,
+                        "cli_cnpj": data.cli_cnpj,
+                        "cli_pj_razao_social": data.cli_pj_razao_social,
+                        "cli_pj_telefone": data.cli_pj_telefone,
+                        "cli_pj_ie": data.cli_pj_ie,
+                        "cli_pj_responsavel": data.cli_pj_responsavel,
+                        "cli_pj_resp_telefone": data.cli_pj_resp_telefone,
+                        "cli_cpf": data.cli_cpf,
+                        "cli_pf_nome": data.cli_pf_nome,
+                        "cli_pf_telefone": data.cli_pf_telefone,
+                        "cli_pf_data_nascimento": data.cli_pf_data_nascimento,
+                        "cli_endereco": data.cli_endereco,
+                        "cli_numero": data.cli_numero,
+                        "cli_complemento": data.cli_complemento,
+                        "cli_bairro": data.cli_bairro,
+                        "cli_cidade": data.cli_cidade,
+                        "cli_estado": data.cli_estado,
+                        "cli_cep": data.cli_cep,
+                        "cli_status": data.cli_status,
+                        "cli_date": data.cli_date,
+                        "cli_motoristas": [],
+                        "cli_veiculos": [],
+                    });
+                    //console.log(newCliente);
+                    motoristas.forEach((element) => {
+                        //console.log(element);
+                        if (element.mot_cli_id == newCliente[index].cli_id) {
+                            newMotorista.push({
+                                "mot_id": element.mot_id,
+                                "mot_cli_id": element.mot_cli_id,
+                                "mot_nome": element.mot_nome,
+                                "mot_telefone": element.mot_telefone
+                            });
+                        }
+                    });
+                    veiculos.forEach((element) => {
+                        //console.log(element);
+                        if (element.vei_cli_id == newCliente[index].cli_id) {
+                            newVeiculo.push({
+                                "vei_id": element.vei_id,
+                                "vei_cli_id": element.vei_cli_id,
+                                "vei_placa": element.vei_placa,
+                                "vei_veiculo": element.vei_veiculo
+                            });
+                        }
+                    });
+                    newCliente[index].cli_motoristas = newMotorista;
+                    newCliente[index].cli_veiculos = newVeiculo;
+                });
+                //console.log(newCliente);
+                res.json(newCliente);
             }
             catch (e) {
                 console.error('Error Occurred', e);

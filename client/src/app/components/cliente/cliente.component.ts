@@ -8,19 +8,14 @@ import { ClientesService } from 'src/app/services/clientes.service';
 })
 export class ClienteComponent implements OnInit {
 
-  constructor(private clienteService:ClientesService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.getCliente();
+    
   }
 
   getCliente() {
-    this.clienteService.getCliente("1").subscribe(
-      res => {
-        console.log(res);
-      },
-      err => console.log(err)
-    );
+   
   }
 
 

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Cliente } from '../models/Cliente';
 
@@ -8,6 +9,7 @@ import { Cliente } from '../models/Cliente';
 })
 export class ClientesService {
 
+  //API
   API_URL = "http://localhost:3000/api";
   constructor(private http: HttpClient) { }
 
@@ -31,6 +33,17 @@ export class ClientesService {
     return this.http.put(`${this.API_URL}/clientes/${id}`, game);
   }
 
-  //stored selected cliente
-  selectedCliente: any;
+
+
+  //FormClientes
+  //clienteForm: Cliente = new Cliente(); -- NAO ESTOU MAIS USANDO POR ENQUANTO
+  //form modal
+  clienteForm: any;
+  //load cliente data
+  clienteFB: FormGroup;
+  //End FormClientes
+
+  //ListClientes
+
+  //End ListClientes
 }

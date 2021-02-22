@@ -5,6 +5,10 @@ import { ClienteListComponent } from './components/cliente/cliente-list/cliente-
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { GameFormComponent } from './components/game-form/game-form.component';
 import { GameListComponent } from './components/game-list/game-list.component';
+import { MotoristaFormComponent } from './components/motorista/motorista-form/motorista-form.component';
+import { MotoristaListComponent } from './components/motorista/motorista-list/motorista-list.component';
+import { VeiculoFormComponent } from './components/veiculo/veiculo-form/veiculo-form.component';
+import { VeiculoListComponent } from './components/veiculo/veiculo-list/veiculo-list.component';
 
 const routes: Routes = [
   {
@@ -37,18 +41,18 @@ const routes: Routes = [
     path: 'motoristas',
     component: ClienteComponent,
     children: [
-      { path: 'edit/:id', component: ClienteFormComponent },
-      { path: 'add', component: ClienteFormComponent },
-      { path: '', component: ClienteListComponent },
+      { path: 'edit/:id', component: MotoristaFormComponent },
+      { path: 'add', component: MotoristaFormComponent },
+      { path: 'list', component: MotoristaListComponent },
     ]
   },
   {
     path: 'veiculos',
     component: ClienteComponent,
     children: [
-      { path: 'edit/:id', component: ClienteFormComponent },
-      { path: 'add', component: ClienteFormComponent },
-      { path: '', component: ClienteListComponent },
+      { path: 'edit/:id', component: VeiculoFormComponent },
+      { path: 'add', component: VeiculoFormComponent },
+      { path: 'list', component: VeiculoListComponent },
     ]
   },
 
